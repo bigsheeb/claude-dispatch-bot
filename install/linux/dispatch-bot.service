@@ -1,0 +1,21 @@
+[Unit]
+Description=Claude Dispatch Bot — Telegram to Claude Code relay
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 __INSTALL_DIR__/dispatch_bot.py
+WorkingDirectory=__INSTALL_DIR__
+Restart=always
+RestartSec=10
+
+# Make sure claude CLI is reachable from PATH.
+Environment=PATH=__USER_HOME__/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+# Capture stdout/stderr to the install dir so logs sit next to config + state.
+StandardOutput=append:__INSTALL_DIR__/launchd-stdout.log
+StandardError=append:__INSTALL_DIR__/launchd-stderr.log
+
+[Install]
+WantedBy=default.target

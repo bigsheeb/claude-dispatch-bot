@@ -1,0 +1,42 @@
+{
+  "_comment": "Telegram bot config. Allowlist is enforced FIRST — anyone not on it gets silent-dropped before Claude sees the message. Copy to config.json and fill in the placeholders.",
+
+  "bot_token": "<paste your BotFather token here>",
+  "bot_username": "<paste your bot username without the @, e.g. my_dispatch_bot>",
+  "bot_display_name": "Dispatch",
+  "_display_name_comment": "Shown in the /restart ack message and saved as the assistant role label in transcripts. Purely cosmetic.",
+
+  "allowlisted_user_ids": [],
+  "_user_ids_comment": "Numeric Telegram user_ids that can DM the bot directly. Easiest way to find yours: message @userinfobot.",
+
+  "allowlisted_chat_ids": [],
+  "_chat_ids_comment": "Numeric group chat_ids the bot should respond in (when @-mentioned). Group IDs are negative. Send a message in the group, then check getUpdates or @userinfobot in the group.",
+
+  "claude_code_command": "claude",
+  "_claude_command_comment": "Path to the claude CLI. Use 'claude' if it's on PATH (in your launchd/systemd env); otherwise an absolute path like '/Users/me/.local/bin/claude'.",
+
+  "claude_working_dir": null,
+  "_working_dir_comment": "Directory Claude Code runs in. Set this to a folder Claude should treat as 'home' — that's where it can read SKILL files, see project files, etc. Defaults to the bot's own dir.",
+
+  "claude_args": ["--model", "sonnet", "--dangerously-skip-permissions"],
+  "_claude_args_comment": "Args passed to `claude -p` after the prompt. --dangerously-skip-permissions is needed for -p mode because there's no interactive prompt for MCP tool approvals. For Opus with 1M context (Team plan only), set this to ['--model', 'opus', '--dangerously-skip-permissions'] AND set claude_env below.",
+
+  "claude_env": {},
+  "_claude_env_comment": "Env vars merged into the Claude subprocess. For Opus 4.7 + 1M context window: {'ANTHROPIC_DEFAULT_OPUS_MODEL': 'claude-opus-4-7[1m]'}. For max extended thinking: add 'CLAUDE_CODE_EFFORT_LEVEL': 'max'.",
+
+  "claude_timeout_s": 600,
+
+  "transcript_dir": null,
+  "_transcript_dir_comment": "Where chat transcripts live. Defaults to ./transcripts next to config.json. On macOS, KEEP THIS OUT OF ~/Documents — that folder is TCC-protected and python3 will lose access on Command Line Tools updates.",
+
+  "transcript_turn_cap": 20,
+  "_transcript_comment": "Per-chat history files are capped at the last N turns to keep context tight.",
+
+  "media_dir": null,
+  "_media_dir_comment": "Where downloaded Telegram media (photos, documents) get stored. Defaults to ./media/incoming next to config.json. Same TCC warning as transcript_dir.",
+
+  "media_retention_days": 15,
+
+  "max_response_chars": 3800,
+  "_response_comment": "Telegram message hard limit is 4096; cap below that for breathing room. Longer Claude outputs split across multiple messages."
+}

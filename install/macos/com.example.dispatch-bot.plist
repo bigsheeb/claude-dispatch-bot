@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+                      "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.example.dispatch-bot</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string>
+    <string>__INSTALL_DIR__/dispatch_bot.py</string>
+  </array>
+
+  <!-- Restart automatically if the process exits (for /restart magic command + crash recovery). -->
+  <key>KeepAlive</key>
+  <true/>
+
+  <!-- Launch on user sign-in. -->
+  <key>RunAtLoad</key>
+  <true/>
+
+  <!-- Throttle restarts to avoid burn loops if config is broken. -->
+  <key>ThrottleInterval</key>
+  <integer>30</integer>
+
+  <!-- Capture stdout/stderr. -->
+  <key>StandardOutPath</key>
+  <string>__INSTALL_DIR__/launchd-stdout.log</string>
+  <key>StandardErrorPath</key>
+  <string>__INSTALL_DIR__/launchd-stderr.log</string>
+
+  <!-- Make sure claude CLI is reachable from PATH inside the launchd env. -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>__USER_HOME__/.local/bin:/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+</dict>
+</plist>

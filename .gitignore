@@ -1,0 +1,29 @@
+# Runtime config (contains your bot token — DO NOT COMMIT)
+config.json
+system_prompt.md
+
+# Runtime state
+.last_offset
+dispatch_bot.log
+launchd-stdout.log
+launchd-stderr.log
+transcripts/
+media/
+
+# Backups
+*.bak
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
