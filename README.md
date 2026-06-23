@@ -1,8 +1,20 @@
 # claude-dispatch-bot
 
-A Telegram bot that relays your messages to **Claude Code** running on your own machine. Talk to your full Claude environment — MCPs, memory, skills, local files — from your phone.
+A personal AI assistant on Telegram, backed by **Claude Code** running on your own machine. Text it the way you'd text a capable colleague: it answers questions, runs research, edits your files, and drives your MCPs (Notion, Linear, Slack, Figma, or whatever you've connected), with your memory, skills, and local context loaded the whole time. The same Claude you use at your desk, now reachable from your phone.
 
 **It runs on your subscription, not the API.** The bot invokes `claude -p` headless, which uses your Claude Pro / Team subscription auth. No `ANTHROPIC_API_KEY`, no per-token billing.
+
+## What it feels like
+
+The same context it has at your desk, now in your pocket: your files, your MCPs, your memory, your skills. Stuff you might text it:
+
+- *"Research <topic> and send me three solid sources plus your take."*
+- *"Summarize what's new in the #acme Slack channel and flag anything that needs a reply."*
+- *"What's blocking the release? Check the open Linear issues."*
+- *"Add the lead I just met to the Notion CRM."*
+- *"Open the Q3 deck in my project folder and tighten the intro copy."*
+
+It answers like someone who already has the context, not a search box you have to spoon-feed. Terse by default, opinionated, and willing to push back before doing anything destructive or built on a wrong premise. Quick question, quick answer. Real work, it either does it or tells you it's a desktop-sized job. The whole personality lives in [`system_prompt.example.md`](system_prompt.example.md); edit that file and the assistant changes on its next message.
 
 ## What you get
 
